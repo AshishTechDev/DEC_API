@@ -9,7 +9,7 @@ const transporter = nodemailer.createTransport({
    service : "Gmail",
    auth : {
         user : "superkingsuniverse1@gmail.com",
-        pass : "tttttttt"
+        pass : "xnnlixaxjkikxbeb"
    }
 })
 
@@ -110,8 +110,9 @@ exports.postReset = async (req, res, next) => {
         to : email,
         subject : "Reset Password",
         html : `<html><h2>You have requested to reset your password</h2>
-        <p>Click on this <a href='${process.env.URL}set-password?userId=${user._id}'>link</a> to Reset your Password.</p>
+        <p>Click on this <a href='${process.env.FRONTEND_URL}set-password?userId=${user._id}&token=${token}'>link</a> to Reset your password.</p>
         </html>`
+        
       });
       res.status(200).json({ message : "Reset Password mail send successfully!" });
      } catch (err) {
@@ -120,4 +121,33 @@ exports.postReset = async (req, res, next) => {
      }
   })
 
+}
+
+exports.updatePassword = async (req, res, next) => {
+  const { password, token, userId } = req.body;
+  const user = await User.findOne({
+      resetToken: token,
+      resetTokenExpiration: { $gt: Date.now() },
+  });
+  if (!user) {
+     return res.status(409).json({ message : "Session Timeout"});
+
+  }
+  let hashedPassword;
+  try {
+      hashedPassword = await bcrypt.hash(password, 12);
+  } catch (err) {
+    return res.status(500).json({ message : "Internal Server Error"});
+  }
+
+  try {
+      await User.findByIdAndUpdate(userId, {
+          password: hashedPassword,
+          resetToken: null,
+          resetTokenExpiration: null,
+      });
+      res.status(200).json({ message : "Password updated successfully" });
+  } catch (err) {
+    return res.status(500).json({ message : "Internal Server Error"});
+  }
 }
