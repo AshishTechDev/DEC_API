@@ -13,19 +13,62 @@ const transporter = nodemailer.createTransport({
    }
 })
 
+exports.getLogin = (req, res, next) => {
+  res.render("auth/login", {
+      pageTitle : "Login",
+      path : "/login",
+});
+};
+
+exports.getSignup = (req, res, next) =>{
+  res.render("auth/signup", {
+      pageTitle : "Sign Up",
+      path : "/signup",
+  });
+};
+
+exports.getReset = (req, res, next) => {
+  res.render("auth/reset", {
+      pageTitle: "Reset Password",
+      path: "/login",
+  });
+};
+
+exports.getNewPassword = async (req, res, next) => {
+
+  const token = req.params.token ;
+  const user = await User.findOne({
+      resetToken: token,
+      resetTokenExpiration: { $gt: Date.now() },
+  });
+
+  if(!user){
+      return res.redirect("/reset");
+  }
+  res.render("auth/new-password", {
+      pageTitle: "Update Password",
+      path: "/login",
+      token: token,
+      userId: user._id,
+  });
+}
+
+
 
 exports.postSignup = async (req, res, next) => {
    const { name ,email, password } = req.body ;
    const user = await User.findOne({ email : email } );
    if(user) {
-     return res.status(500).json({ message : "user already exists"});
+      // res.status(500).json({ message : "user already exists"});
+      return res.redirect("/api/login");
+
    }
    let hasedPassword ;
    try {
     hasedPassword = await bcrypt.hash(password, 12);
    }catch (err) {
        console.log("unable to encrypt password");
-       return res.status(500).json({ message : "unable to encrypt password"});
+      //  return res.status(500).json({ message : "unable to encrypt password"});
    }
 
    try {
@@ -37,7 +80,9 @@ exports.postSignup = async (req, res, next) => {
      }
    } catch (err) {
       console.log("unable to create ");
-      return res.status(500).json({ message : "unable to create account "});
+      //  res.status(500).json({ message : "unable to create account "});
+      return res.redirect("/api/login");
+
    }
 
    try {
@@ -48,10 +93,14 @@ exports.postSignup = async (req, res, next) => {
       html : `<div><h2>Your Account is created Successfully</h2></div>`,
     });
     if(mailSent) {
-       return res.status(200).json({ message : "Your Account is created Successfully !"});
+        // res.status(200).json({ message : "Your Account is created Successfully !"});
+        return res.redirect("/api/login");
+
     }
    } catch (err) {
-    return res.status(500).json({ message : "unable to send email "});
+    //  res.status(500).json({ message : "unable to send email "});
+    return res.redirect("/api/signup");
+
   }
 
 };
@@ -67,14 +116,14 @@ exports.postLogin = async (req, res, next) => {
   try {
     const doMatches = await bcrypt.compare(password, user.password);
     if(doMatches) {
-      const token = jwt.sign(
-        { userId : user.id, role: user.role},
-        process.env.JWT_KEY,
-        {
-            expiresIn: Date.now() + 36000000,
-        }
-      );
-      res.status(200).json({ token, role: user.role});
+              req.isLoggedIn = true;
+      req.session.isLoggedIn = true;
+        req.session.user = user._id;
+        req.session.role = user.role;
+        req.session.save(() => {
+         return res.redirect("/");
+        });
+      // res.status(200).json({ token, role: user.role});
     } else {
       return res.status(500).json({ message: "password mismatch"});
     }
@@ -123,7 +172,7 @@ exports.postReset = async (req, res, next) => {
 
 }
 
-exports.updatePassword = async (req, res, next) => {
+exports.postNewPassword = async (req, res, next) => {
   const { password, token, userId } = req.body;
   const user = await User.findOne({
       resetToken: token,
@@ -150,4 +199,10 @@ exports.updatePassword = async (req, res, next) => {
   } catch (err) {
     return res.status(500).json({ message : "Internal Server Error"});
   }
+}
+
+exports.postLogout = (req, res,next) => {
+  req.session.destroy(() => {
+          res.redirect("/api/login");
+      });
 }

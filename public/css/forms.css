@@ -1,0 +1,41 @@
+
+.form-control {
+  margin: 2rem 0;
+}
+
+.form-control label,
+.form-control input,
+.form-control textarea {
+  width: 100%;
+  font-size: 1.1rem;
+}
+
+.form-control input,
+.form-control textarea {
+  border: 1px solid black;
+  outline: 0;
+  padding: 5px;
+}
+
+.form-control input {
+  height: 1.7rem;
+}
+
+
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 3px;
+  border : 0px ;
+  cursor: pointer;
+  color: white !important;
+  background-color: rgba(240, 248, 255, 0) !important; 
+  padding: 10px !important;
+  font-size: 1rem !important;
+}
+
+.btn:hover,
+.btn:active {
+  background-color: rgb(183, 10, 56) !important;
+  transition: 0.4s;
+}

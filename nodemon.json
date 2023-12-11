@@ -1,8 +1,8 @@
 {
   "env" : {
-    "DB_USERNAME" : " ",
-    "DB_PASSWORD" : " ",
-    "DB_NAME" : " ",
+    "DB_USERNAME" : "",
+    "DB_PASSWORD" : "",
+    "DB_NAME" : "INTERSHIP",
     "JWT_KEY" : "lt is a secret key",
     "PORT" : 4000
   }

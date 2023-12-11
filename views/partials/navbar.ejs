@@ -1,0 +1,26 @@
+<nav>
+  <ul>
+    <li class="nav-item">
+      <a class="<%= path === '/' ? 'active' : '' %>" href="/">Home</a>
+    </li>
+  </ul>
+  <ul>
+    <% if(!isAuthenticated){ %>
+    <li class="nav-item">
+      <a class="<%= path === '/login' ? 'active' : '' %>" href="/api/login"
+        >Login</a>
+    </li>
+    <li class="nav-item">
+      <a class="<%= path === '/signup' ? 'active' : '' %>" href="/api/signup"
+        >Signup</a
+      >
+    </li>
+    <% } else { %>
+    <li class="nav-item">
+      <form action="/api/logout" method="post">
+        <button class="btn">LogOut</button>
+      </form>
+    </li>
+    <% } %>
+  </ul>
+</nav>

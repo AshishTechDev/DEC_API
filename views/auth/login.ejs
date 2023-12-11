@@ -1,0 +1,32 @@
+<%- include('../partials/head.ejs') %>
+<link rel="stylesheet" href="/css/auth.css">
+    </head>
+
+    <body>
+        <%- include('../partials/navbar.ejs') %>
+        <section>
+            <form class="login-form" action="/api/login" method="POST">
+                <div class="mb-5">
+                    <h2 style="text-align: center;">LOGIN PAGE</h3>
+                </div>
+                <div class="mb-5">
+                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                  <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+                <div class="mb-4">
+                  <label for="exampleInputPassword1" class="form-label">Password</label>
+                  <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="mb-4 form-check">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                  <label class="form-check-label" for="exampleCheck1">Check me out or </label>
+                </div>
+                <button type="submit" class="btn btn-primary mb-3">Submit</button>
+                <div class="mb-4">
+                    <label class="form-check-label" >Forget Password ? <a href="/api/reset">Reset Password</a>
+                    </label>
+                </div>
+              </form>
+            </section>
+                    <%- include('../partials/end.ejs') %>   
