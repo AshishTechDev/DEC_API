@@ -1,4 +1,6 @@
-# Dec_Api
+# Dec_Api 
+
+Deployed on https://auth-api-app.onrender.com/
 
 add your mongodb username and password in nodemon.json file
 also add your nodemailer passkey in controllers folder(auth.js file) in postsignup.
