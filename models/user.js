@@ -18,7 +18,9 @@ const userSchema = new Schema({
    role : {
     type : 'string',
     required : false,
-   },
-})
-
+   }, resetToken: String,
+   resetTokenExpiration: Date,
+},
+   { timestamps: true }
+);
 module.exports = mongoose.model('User', userSchema) ;

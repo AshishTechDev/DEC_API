@@ -119,7 +119,6 @@ exports.postLogin = async (req, res, next) => {
               req.isLoggedIn = true;
       req.session.isLoggedIn = true;
         req.session.user = user._id;
-        req.session.role = user.role;
         req.session.save(() => {
          return res.redirect("/");
         });
@@ -133,44 +132,43 @@ exports.postLogin = async (req, res, next) => {
 };
 
 exports.postReset = async (req, res, next) => {
+  console.log("user") ;
   const email = req.body.email ;
-
-  let user = await User.findOne({ email: email });
-  if(!user) {
-    return res.status(500).json({ message : "user not found"});
+  console.log(email);
+  //1) Whether the email exists or not
+  let user = await  User.findOne({ email: email });
+  // console.log(user.email) ;
+  if(!user){
+      return res.redirect("/api/reset");
   }
-
-  //generate a random token 
-  crypto.randomBytes(32, async (err, buffer) => {
-     if(err) {
-      return res.status(500).json({ message : "Internal Server Error"});
-     }
-     const token = buffer.toString("hex");
-
-     //set the token expiration
-
-     user.resetToken = token ;
-     user.resetTokenExpiration = Date.now() + 36000000 ;
-
-     try {
-      await user.save();
-      await transporter.sendMail({
-        from : "superkingsuniverse1@gmail.com",
-        to : email,
-        subject : "Reset Password",
-        html : `<html><h2>You have requested to reset your password</h2>
-        <p>Click on this <a href='${process.env.FRONTEND_URL}set-password?userId=${user._id}&token=${token}'>link</a> to Reset your password.</p>
-        </html>`
-        
+  //2) Generate a random token
+  crypto.randomBytes(32, (err, buffer)=>{
+      if(err){
+          console.log(err);
+          return;
+      }
+  const token = buffer.toString("hex");
+  //3) Set the token and expiration in user instance
+  user.resetToken = token;
+  user.resetTokenExpiration = Date.now() + 3600000;
+  user
+  .save()
+  .then(() => {
+      //4) Send mail to the user along with token
+      return transporter.sendMail({
+          from: "superkingsuniverse1@gmail.con",
+          to: email,
+          subject: "Reset Password",
+          html: `<h1>Click on the link below to reset your password</h1>
+          <a href="http://localhost:4000/api/reset/${token}">Reset Password</a>`,
       });
-      res.status(200).json({ message : "Reset Password mail send successfully!" });
-     } catch (err) {
-      return res.status(500).json({ message : "Internal Server Error"});
-
-     }
+  }) 
+  .then(() => {
+      res.redirect("/api/reset");
   })
-
-}
+  .catch((err) => console.log(err));
+});
+};
 
 exports.postNewPassword = async (req, res, next) => {
   const { password, token, userId } = req.body;
@@ -179,14 +177,14 @@ exports.postNewPassword = async (req, res, next) => {
       resetTokenExpiration: { $gt: Date.now() },
   });
   if (!user) {
-     return res.status(409).json({ message : "Session Timeout"});
+    return res.redirect("/api/reset")
 
   }
   let hashedPassword;
   try {
       hashedPassword = await bcrypt.hash(password, 12);
   } catch (err) {
-    return res.status(500).json({ message : "Internal Server Error"});
+    return next(err) ;
   }
 
   try {
@@ -195,7 +193,8 @@ exports.postNewPassword = async (req, res, next) => {
           resetToken: null,
           resetTokenExpiration: null,
       });
-      res.status(200).json({ message : "Password updated successfully" });
+      // res.status(200).json({ message : "Password updated successfully" });
+      res.redirect("/api/login");
   } catch (err) {
     return res.status(500).json({ message : "Internal Server Error"});
   }
