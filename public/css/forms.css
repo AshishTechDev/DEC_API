@@ -20,22 +20,3 @@
 .form-control input {
   height: 1.7rem;
 }
-
-
-.btn {
-  display: inline-block;
-  text-decoration: none;
-  border-radius: 3px;
-  border : 0px ;
-  cursor: pointer;
-  color: white !important;
-  background-color: rgba(240, 248, 255, 0) !important; 
-  padding: 10px !important;
-  font-size: 1rem !important;
-}
-
-.btn:hover,
-.btn:active {
-  background-color: rgb(183, 10, 56) !important;
-  transition: 0.4s;
-}
