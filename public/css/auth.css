@@ -6,11 +6,108 @@ section > .login-form {
  border-radius: 10px;
  
  }
+
+ @media screen and (max-width: 2000px) {
+  .navbar-nav{
+    width: 65%;
+  }
+  .d-lg-flex {
+    width: 10%;
+  }
+
+  section {
+    padding-top: 5rem;
+  }
+
+  section > .login-form {
+    width: 60% !important;
+    margin: 1rem ;
+    padding: 4rem 1.5rem;
+  }
+
+ }
+ @media screen and (max-width: 1700px) {
+  .navbar-nav{
+    width: 63%;
+  }
+  .d-lg-flex {
+    width: 12%;
+  }
+ }
+
+ @media screen and (max-width: 1400px) {
+  .navbar-nav{
+    width: 61%;
+  }
+  .d-lg-flex {
+    width: 14%;
+  }
+  
+  section {
+    padding-top: 5rem;
+  }
+
+  section > .login-form {
+    width: 70% !important;
+    margin: 1rem ;
+    padding: 4rem 1.5rem;
+  }
+
+ }
+
+ @media screen and (max-width: 1200px) {
+  .navbar-nav{
+    width: 58%;
+  }
+  .d-lg-flex {
+    width: 17%;
+  }
+ }
+
+ @media screen and (max-width: 992px) {
+  
+  .container-fluid .auth-btn {
+    width: 100% ;
+     display: flex;
+     justify-content:space-around ;
+     align-items: center;
+  }
+  .form-danger {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .container-fluid .auth-btn > .btn {
+    width: 40%;
+    background-color: transparent;
+  }
+  .container-fluid .auth-btn  .btn-danger {
+    width: 80%;
+  }
+  
+   }
+
+ @media screen and (max-width: 800px) {
+  
+.container-fluid .auth-btn {
+  width: 100% ;
+   display: flex;
+   justify-content:space-around ;
+   align-items: center;
+}
+.container-fluid .auth-btn > .btn {
+  width: 40%;
+  background-color: transparent;
+}
+
+ }
+ 
  
  @media screen and (max-width: 600px) {
   main {
     width: 100%;
-    height: 50% !important;
+    height: auto !important;
   }
   nav {
     font-size: 10px ! important;
@@ -25,13 +122,33 @@ section > .login-form {
     border-radius: 5px;
 }
 
+.container-fluid .auth-btn {
+  width: 100% ;
+   display: flex;
+   justify-content:space-around ;
+   align-items: center;
+}
+.container-fluid .auth-btn > .btn {
+  width: 40%;
+  background-color: transparent;
+}
+
   section {
     padding-top: 2rem;
+    height: 100vh;
+  }
+
+  .form-text{
+    display: none;
   }
 
   section > .login-form {
     width: 100% !important;
     margin: 1rem ;
-    padding: 4rem 1.5rem;
+    padding: 3rem 1.5rem;
+  
+  }
+  section > .login-form > .btn {
+    width: 100%;
   }
 }
