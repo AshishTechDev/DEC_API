@@ -55,6 +55,8 @@ nav > ul:nth-child(2) {
 
 main {
   width: 100%;
+ position: relative;
+ z-index: -9999;
 }
 
 section {
