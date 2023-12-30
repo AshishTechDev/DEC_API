@@ -1,0 +1,378 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: 0px;
+  font-family: 'Roboto', sans-serif;
+}
+
+button , i, img {
+  cursor: pointer;
+}
+i{
+  font-size: 35px;
+}
+
+button:hover {
+  opacity: 0.9;
+  transition: 0.4s;
+  box-shadow: 2px 4px 10px 2px solid rgba(255, 255, 255, 0.827);
+}
+
+.home-section {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+}
+
+section {
+  background-color: rgb(0, 0, 0);
+  width: 1700px;
+  min-height: 100vh ;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1.3fr;
+
+}
+
+aside {
+  top: 4rem;
+  width: 17vw;
+  height: 100%;
+  background-color: black;
+  position: fixed;
+ border: 0.2px solid rgb(133, 133, 133) ;
+ border-top: 0px;
+ border-bottom: 0px;
+ display: flex;
+ justify-content:flex-start ;
+  align-items: start;
+  flex-direction: column;
+  padding: 2rem;
+  padding-top: 0px;
+}
+.left-aside{
+  /* left: 14.5vw; */
+  left: 0;
+}
+
+.right-aside{
+  width: 370px;
+  color: white;
+  right: 0;
+  padding: 1rem;
+}
+
+
+
+
+aside > .web-logo{
+  margin: 1rem 2rem;
+  padding: 8px;
+  border-radius: 25px;
+  transition: 0.4s ease-in-out;
+}
+
+
+aside > .web-logo > i {
+  font-size: 35px;
+}
+
+section aside:first-child  a, section aside:first-child  button {
+  background-color: black;
+   color: white !important;
+   border: 0;
+   font-size: 25px;
+   font-weight: 700;
+   padding: 20px 27px;
+   border-radius: 35px;
+   text-decoration: none;
+   margin: 10px;
+   line-height: 24px;
+   transition: 0.3s ;
+   cursor: pointer;
+}
+
+
+section aside:first-child  a:hover, section aside:first-child  button:hover  , aside > .web-logo:hover {
+  background-color: rgb(32, 32, 32);
+}
+
+a > span , button > span {
+  margin-left: 8px;
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+
+
+
+/* start -- right aside */
+.right-aside-box {
+  width: 100%;
+  background-color: rgb(38, 38, 37);
+  padding: 1rem;
+  border-radius: 15px;
+  margin-bottom: 1rem;
+}
+.right-aside-title {
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.right-aside-trending {
+  width: 100%;
+}
+
+.right-aside-trending > ul li {
+  list-style-type: none;
+  padding: 0.5rem;
+}
+
+.right-aside-context {
+  width: 100%;
+  background-color: rgb(38, 38, 37);
+  border-radius: 15px;
+  padding: 1rem 0;
+}
+
+.right-aside-context > h1 {
+  padding: 0.7rem 1rem;
+}
+
+.right-aside-follow {
+  width: 100%;
+  padding: 0.7rem 0.7rem;
+  display: flex;
+  justify-content:flex-start ;
+  align-items: center;
+}
+
+.right-aside-follow > .author-name {
+  width: 60%;
+  padding: 1rem;
+}
+
+.right-aside-follow > button {
+  padding: 0.7rem 1rem;
+  border-radius: 25px ;
+  color: rgb(34, 33, 33);
+  font-weight: 600;
+  font-size:smaller ;
+}
+
+.right-aside-follow:hover {
+  transition: 0.4s;
+  cursor: pointer;
+  background-color: rgb(31, 30, 30);
+}
+
+
+/* end of .right aside */
+
+
+
+
+
+
+
+
+
+
+/* container - middle section */
+.container {
+  width: 800px !important;
+  /* border: 0.1px solid rgba(69, 66, 66, 0.712); */
+  margin-top: 6vh;
+  border-top: 0;
+}
+
+.container-top {
+  width: 100%;
+  height:6vh ;
+  /* background-color: brown; */
+  position: relative;
+}
+
+.container-message{
+  width: 100%;
+  height: auto;
+  position: relative ;
+  border: 0.1px solid rgba(43, 40, 40, 0.609) ;
+  border-top: 0px ;
+  color: white;
+  padding: 0 1rem;
+}
+
+.message-container{
+  width: 100%;
+  /* background-color: aqua; */
+}
+
+.post-heading {
+  padding: 0.5rem 0.2rem;
+}
+.message-container > textarea{
+  width: 100%;
+  min-height: 10vh;
+  font-size: 20px;
+  border: 0.1rem solid rgb(79, 79, 79);
+  border-radius: 15px;
+  resize:none ;
+  caret-color: white;
+  background-color: transparent;
+  color: white;
+  overflow: hidden;
+  padding: 0.5rem;
+}
+
+
+.message-button {
+  display: flex;
+  justify-content:space-between ;
+  align-items: center;
+  width: 100% !important ;
+  margin-left: 0 !important;
+  padding : 0.7rem 0 !important;
+}
+
+
+.message-box{
+  display: flex;
+  justify-content:space-evenly ;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.message-box > span {
+  padding: 5px 5px;
+  margin: 10px 5px;
+  border-radius: 25px;
+  /* background-color: rgb(32, 32, 32); */
+
+}
+.message-button > button {
+  display: block;
+  padding: 10px 22px;
+  margin: 10px 5px;
+  border-radius: 25px;
+  color: white;
+  background-color: rgb(28, 182, 253);
+  font-size: 20px;
+}
+
+.post-container {
+  width: 100% ;
+}
+
+.post-container > .post-box .post-author {
+  width: 100%;
+  display: flex;
+  align-items: center ;
+  justify-content: flex-start;
+  padding: 0.5rem;
+}
+
+
+
+ .post-author-img {
+  height: 100%;
+  /* background-color: blue; */
+  padding: 5px;
+  display: flex;
+  object-fit: cover;
+  justify-content: center;
+
+}
+ .post-author-img  img {
+  width: 45px;
+  height: 45px;
+  outline: 3px solid rgb(108, 108, 108);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.post-author-name {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  margin-left: 0.7rem;
+}
+.post-author-name > span {
+  color: white;
+}
+
+
+
+
+.post-container > .post-box {
+  width: 100%;
+  border: 0.1px solid rgba(43, 40, 40, 0.609) ;
+}
+.post-container > .post-box .post-image {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.post-container > .post-box .post-image > img {
+  width: 90%;
+  height: 90%;
+  margin:0 2rem;
+  border-radius: 15px;
+
+}
+
+.post-button{
+  display: flex;
+  justify-content:space-between ;
+  align-items: center;
+    width: 22%;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin-left: 1.5rem;
+}
+ i {
+  font-size: 20px;
+}
+
+.post-title{
+  padding: 0 2rem;
+  margin-bottom: 1rem;
+  color: white;
+  max-height: 120px ;
+  overflow: hidden;
+}
+
+
+
+@media screen and (max-width: 1610px) {
+  .home-section{
+    
+      justify-content: flex-start;
+  }
+  .container{
+    width: 700px !important;
+  }
+  .left-aside {
+    align-items: center;
+  }
+  .left-aside > a > span {
+    display: none;
+  }
+  .right-aside{
+    width: 370px;
+      right: 0;
+  }
+}
+
+

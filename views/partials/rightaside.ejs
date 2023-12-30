@@ -1,0 +1,33 @@
+<aside class="third-div right-aside">
+  <div class="right-aside-box">
+   <div class="right-aside-title">
+     <h1>What's Trending</h1>
+   </div>
+     <div class="right-aside-trending">
+       <ul>
+         <li>#tax</li>
+         <li>#tmkoc</li>
+         <li>#msdhoni</li>
+         <li>#viratkohli</li>
+         <li>#ipl</li>
+       </ul>
+     </div>
+ </div>
+ <div class="right-aside-context">
+   <h1>Who to Follow</h1>
+     <% for(let people of peoples) {%>
+
+   <div class="right-aside-follow">
+     <div class="post-author-img">
+       <img src="http://localhost:4000/<%= people.profilePic %>"
+
+       alt="">
+     </div>
+     <div class="author-name">
+       <span><%= people.name %></span>
+     </div>
+     <button type="button">Follow</a>
+   </div>
+   <% } %>
+ </div>
+ </aside>

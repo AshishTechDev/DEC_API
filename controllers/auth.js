@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const crypto = require('crypto');
 
 const nodemailer = require("nodemailer");
+const { log } = require('console');
 
 const transporter = nodemailer.createTransport({
    service : "Gmail",
@@ -12,6 +13,12 @@ const transporter = nodemailer.createTransport({
         pass : "xnnlixaxjkikxbeb"
    }
 })
+
+exports.getNewSignup = (req, res, next) => {
+  res.render("auth/signupnew", {
+    path : "/newsignup",
+  })
+}
 
 exports.getLogin = (req, res, next) => {
   res.render("auth/login", {
@@ -27,36 +34,12 @@ exports.getSignup = (req, res, next) =>{
   });
 };
 
-exports.getReset = (req, res, next) => {
-  res.render("auth/reset", {
-      pageTitle: "Reset Password",
-      path: "/login",
-  });
-};
 
-exports.getNewPassword = async (req, res, next) => {
-
-  const token = req.params.token ;
-  const user = await User.findOne({
-      resetToken: token,
-      resetTokenExpiration: { $gt: Date.now() },
-  });
-
-  if(!user){
-      return res.redirect("/reset");
-  }
-  res.render("auth/new-password", {
-      pageTitle: "Update Password",
-      path: "/login",
-      token: token,
-      userId: user._id,
-  });
-}
 
 
 
 exports.postSignup = async (req, res, next) => {
-   const { name ,email, password } = req.body ;
+   const { name , email, password } = req.body ;
    const user = await User.findOne({ email : email } );
    if(user) {
       // res.status(500).json({ message : "user already exists"});
@@ -74,7 +57,7 @@ exports.postSignup = async (req, res, next) => {
    try {
      const users = await User.find() ;
      if(users.length == 0){
-        const user = await User.create({name, email, password : hasedPassword, role : "admin" });
+        const user = await User.create({name, email , password : hasedPassword, role : "admin" });
      } else {
       const user = await User.create({ name, email , password : hasedPassword, role : "user" });
      }
@@ -94,12 +77,12 @@ exports.postSignup = async (req, res, next) => {
     });
     if(mailSent) {
         // res.status(200).json({ message : "Your Account is created Successfully !"});
-        return res.redirect("/api/login");
+        return res.redirect("/api/newsignup");
 
     }
    } catch (err) {
     //  res.status(500).json({ message : "unable to send email "});
-    return res.redirect("/api/signup");
+    return res.redirect("/api/newsignup");
 
   }
 
@@ -119,6 +102,7 @@ exports.postLogin = async (req, res, next) => {
               req.isLoggedIn = true;
       req.session.isLoggedIn = true;
         req.session.user = user._id;
+        req.session.role = user.role;
         req.session.save(() => {
          return res.redirect("/");
         });
@@ -131,6 +115,13 @@ exports.postLogin = async (req, res, next) => {
   }
 };
 
+// exports.postnewReset = async (req, res, next) => {
+//   res.render("auth/resetpassword", {
+//     pageTitle: "Update Password",
+//     path: "/reset",
+// });
+// }
+
 exports.postReset = async (req, res, next) => {
   console.log("user") ;
   const email = req.body.email ;
@@ -139,7 +130,7 @@ exports.postReset = async (req, res, next) => {
   let user = await  User.findOne({ email: email });
   // console.log(user.email) ;
   if(!user){
-      return res.redirect("/api/reset");
+      return res.redirect("/reset");
   }
   //2) Generate a random token
   crypto.randomBytes(32, (err, buffer)=>{
@@ -164,20 +155,41 @@ exports.postReset = async (req, res, next) => {
       });
   }) 
   .then(() => {
-      res.redirect("/api/reset");
+      res.redirect("/api/newSignup");
   })
   .catch((err) => console.log(err));
 });
 };
 
+exports.getNewPassword = async (req, res, next) => {
+
+  const token = req.params.token ;
+  console.log(token);
+  const user = await User.findOne({
+      resetToken: token,
+      resetTokenExpiration: { $gt: Date.now() },
+  });
+
+  if(!user){
+      return res.redirect("/api/newSignup");
+  }
+  res.render("auth/resetpassword", {
+      pageTitle: "Update Password",
+      path: "/reset",
+      token: token,
+      userId : user._id,
+  });
+}
+
 exports.postNewPassword = async (req, res, next) => {
   const { password, token, userId } = req.body;
+  console.log(password, token, userId);
   const user = await User.findOne({
       resetToken: token,
       resetTokenExpiration: { $gt: Date.now() },
   });
   if (!user) {
-    return res.redirect("/api/reset")
+     return res.redirect("/api/newSignup")
 
   }
   let hashedPassword;
@@ -194,7 +206,7 @@ exports.postNewPassword = async (req, res, next) => {
           resetTokenExpiration: null,
       });
       // res.status(200).json({ message : "Password updated successfully" });
-      res.redirect("/api/login");
+      res.redirect("/api/newSignup");
   } catch (err) {
     return res.status(500).json({ message : "Internal Server Error"});
   }
@@ -202,6 +214,6 @@ exports.postNewPassword = async (req, res, next) => {
 
 exports.postLogout = (req, res,next) => {
   req.session.destroy(() => {
-          res.redirect("/api/login");
+          res.redirect("/");
       });
 }

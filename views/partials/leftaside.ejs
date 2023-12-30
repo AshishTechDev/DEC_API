@@ -1,0 +1,49 @@
+<aside class="left-aside">
+  <div class="web-logo">
+    <i class="fa-brands fa-x-twitter" style="color: #ffffff;"></i>
+  </div>
+  <a href="/">
+    <i class="fa-solid fa-house" style="color: #ffffff;" ></i>
+    <span>Home</span>
+  </a>
+  <a>
+    <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+    <span>Explore</span>
+  </a>
+  <a>
+    <i class="fa-regular fa-bell" style="color: #ffffff;"></i>
+    <span>Notification</span>
+  </a>
+  <a>
+    <i class="fa-regular fa-envelope" style="color: #ffffff;"></i>
+   <span> Messages</span></a>
+  <a>
+    <i class="fa-regular fa-rectangle-list" style="color: #ffffff;"></i>
+    <span>List</span>
+  </a>
+  <a>
+    <i class="fa-regular fa-bookmark" style="color: #ffffff;"></i>
+    <span>Bookmarks</span></a>
+  <a>
+    <i class="fa-solid fa-user-group" style="color: #ffffff;"></i>
+    <span>Communities</span></a>
+  <a>
+    <i class="fa-brands fa-x-twitter" style="color: #ffffff;"></i>
+    <span>Premium</span></a>
+  <a href="/mypost">
+    <i class="fa-regular fa-user" style="color: #ffffff;"></i>
+    <span>Profile</span></a>
+    <% if(!isAuthenticated){ %>
+    <a type="button" class="More-login"
+    href="/api/newsignup" >
+      <i class="fa-solid fa-ellipsis"></i>
+      <span>More</span></a>
+      <% } else { %>
+        <form action="/api/logout"  method="post">
+      <button type="submit" class="More-login" style="background-color: rgb(255, 0, 60);" >
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span>Logout</span></button>
+      </form>
+        <% } %>
+
+</aside>

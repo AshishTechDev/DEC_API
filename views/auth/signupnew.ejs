@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/css/newsignup.css">
+  
+  <title>Document</title>
+</head>
+<body>
+  <section class="signup-section">
+      <div class="signup-sub-section">
+        <div class="signup-section-logo">
+          <a href="/">
+            <img src="/images/twitter.png" alt="">
+          </a>
+        </div>
+      </div>
+      <div class="signup-sub-section">
+        <div class="signup-section-form">
+            <div class="signup-form-sub">
+              <h1>Happening now</h1>
+            </div>
+            <div class="signup-form-sub">
+              <h3>Join today.</h3>
+              <button> <i class="fa-brands fa-google"></i> Signup with Google</button>
+              <button><i class="fa-brands fa-apple"></i> Signup with Apple</button>
+              <div class="space-line">
+                <hr>
+                <span>or</span>
+                <hr>
+              </div>
+              <button class="open-box-btn" onclick="getValue('signup')" >Create Account </button>
+            </div>
+            <div class="signup-form-sub">
+              <div class="login-box">
+                <h2>Already have an account ?</h2>
+                <button class="open-box-btn" onclick="getValue('login')" >Sign in</button>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="signup-overlay">
+        <div class="signup-box" id="signup">
+            <h1>Create your account</h1>
+            <button class="overlay-remove">
+                <i class="fa-solid fa-xmark" 
+                style="color: white;"></i>
+              </button>
+            <form action="/api/signup" method="POST">
+              <input type="text" placeholder="Name" name="name">
+              <input type="text" placeholder="Email" name="email">
+              <input type="password" placeholder="Password" name="password">
+              <input type="password" placeholder="Confirm Password" name="confirmpassword">
+              <input type="submit" placeholder="Sign up">
+            </form>
+            
+        </div>
+        <div class="signup-box" id="login">
+          <h1>Login your account</h1>
+          <button class="overlay-remove">
+            <i class="fa-solid fa-xmark" 
+            style="color: white;"></i>
+          </button>
+          <form  action="/api/login" method="POST">
+            <input type="text" placeholder="Email" name="email">
+            <input type="password" placeholder="Password" name="password">
+            <a  type="button" onclick="getValue('reset')">Forget Password ?</a>
+            <input type="submit" placeholder="Login Now">
+
+          </form>
+      </div>
+      <div class="signup-box" id="reset">
+        <h1>Reset Password of your Account</h1>
+        <button class="overlay-remove">
+          <i class="fa-solid fa-xmark" 
+          style="color: white;"></i>
+        </button>
+        <form  action="/api/reset" method="POST">
+          <input type="text" placeholder="Email" name="email">
+          <!-- <input type="password" placeholder="Password" name="password"> -->
+          <!-- <a  href="/api/reset">Forget Password ?</a> -->
+          <input type="submit" placeholder="Submit">
+        </form>
+    </div>
+
+      </div>
+  </section>
+  <script src="/js/signup.js"></script>
+</body>
+</html>

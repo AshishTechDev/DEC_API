@@ -1,31 +1,77 @@
 <%- include('../partials/head.ejs') %>
-<link rel="stylesheet" href="/css/forms.css">
-    <link rel="stylesheet" href="/css/auth.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/home.css">
+  <link rel="stylesheet" href="/css/imagebox.css">
     </head>
 
     <body>
-        <%- include('../partials/navbar.ejs') %>
-                    <main>
-                      <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                          <div class="carousel-item active" data-bs-interval="10000">
-                            <img src="./images/first.jpg" class="d-block w-100" alt="..." >
-                          </div>
-                          <div class="carousel-item" data-bs-interval="2000">
-                            <img src="./images/second.jpg" class="d-block w-100" alt="...">
-                          </div>
-                          <div class="carousel-item">
-                            <img src="./images/third.jpg" class="d-block w-100" alt="...">
-                          </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                          <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                          <span class="visually-hidden">Next</span>
-                        </button>
-                      </div>                    
-                    </main>
+        <!-- <%- include('../partials/navbar.ejs') %> -->
+        <section class="home-section">
+          <%- include('../partials/leftaside.ejs') %>
+          <div class="container">
+            <!-- <div class="container-top">
+              Twitter
+            </div> -->
+            <div class="container-message">
+              <form class="message-container" action="/addpost" method="post" enctype="multipart/form-data">
+                <div class="post-heading">Your Post</div>
+                <textarea type="text" name="title"></textarea>
+                  <%- include('../partials/image-upload.ejs') %>
+                  <input type="hidden" name="userId" value="<%- userId %>" >
+                <div class="message-button">
+                  <div class="message-box">
+                    <span><i class="fa-regular fa-image" 
+                      style="color: #ffffff;" 
+                      type="button" onclick="pickImageHandler()">
+                    </i></span>
+                      <span><i class="fa-solid fa-camera" style="color: #ffffff;"></i></span>
+                    <span><i class="fa-regular fa-face-laugh" style="color: #ffffff;"></i></span>
+                  </div>
+                  <button type="submit">Post</a>
+                </div>
+              </form> 
+            </div>
+            <% if(posts.length > 0) {%>
+            <div class="post-container">
+              <% for(let post of posts) {%>
+              <div class="post-box">
+                <div class="post-author">
+                  <div class="post-author-img">
+                    <img src="<%= post.userId.profilePic %>" alt="">
+                  </div>
+                  <div class="post-author-name">
+                    <span><%= post.userId.name %></span>
+                  </div>
+                </div>
+                <div class="post-image">
+                  <img src="http://localhost:4000/<%= post.imageUrl %>" alt="<%= post.title %>">
+                </div>
+                <div class="post-button">
+                  <i class="fa-solid fa-heart"
+                  style="color: #ff1b3d;"></i>
+                  <i class="fa-regular fa-comment" 
+                  style="color: #ffffff;"></i>
+                  <i class="fa-solid fa-arrow-up-from-bracket"           style="color: #ffffff;"></i>
+                </div>
+                <div class="post-title">
+                  <span>
+                    <%= post.title %>
+                  </span>
+                </div>
+              </div>
+              <% }%>
+            </div>
+            <% } else {%>
+              <h1>No Posts yet</h1>
+              <% } %>
+      
+            <div class="container-top">
+            </div>
+          </div>
+          <%- include('../partials/rightaside.ejs') %>
+        </section>
+        <script src="../js/edit-post.js"></script>
                     <%- include('../partials/end.ejs') %>

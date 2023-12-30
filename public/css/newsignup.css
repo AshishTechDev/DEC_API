@@ -1,0 +1,300 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+input{
+  color: white;
+  font-size: 1.4rem ;
+  padding-left: .5rem;
+}
+
+input:focus {
+  outline : 0.1px solid rgb(0, 179, 255) ;
+}
+
+button {
+  cursor: pointer;
+}
+section{
+  background-color: rgb(0, 0, 0);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+}
+
+
+section .signup-sub-section {
+  width: 45%;
+  /* border: 1px solid white ; */
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center ;
+  /* background-color: red ; */
+  margin : 2rem ;
+  padding: 2rem;
+}
+
+section .signup-sub-section:nth-child(1) > .signup-section-logo {
+  width: 45vh;
+  height: 45vh;
+  padding: 4rem;
+}
+
+section .signup-sub-section:nth-child(1) > .signup-section-logo  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+section .signup-sub-section:nth-child(2) > .signup-section-form {
+              width: 100%;
+              height: 70%;
+              /* background-color: brown; */
+              display: flex;
+              justify-content: start;
+              flex-direction: column;
+}
+
+.signup-section-form > .signup-form-sub{
+  width: 100%;
+  height: 20%;
+  /* border: 1px solid white; */
+}
+
+.signup-form-sub:nth-child(1) {
+  padding: 1rem;
+
+}
+
+.signup-form-sub:nth-child(1) > h1 {
+  padding-left: 3rem;
+   font-size: 5.5rem;
+   font-family: "TwitterChirpExtendedHeavy","Verdana",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+   letter-spacing: -1.2px;
+    color: white;
+}
+
+.signup-form-sub:nth-child(2) {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  padding-left: 4rem;
+  height: 60%;
+}
+
+.signup-form-sub:nth-child(2) > h3 {
+  width: 100%;
+  font-family: "TwitterChirpExtendedHeavy","Verdana",-apple-system,BlinkMacSystemFont,Roboto,Arial,sans-serif ;
+  margin: 3rem 0.5px;
+  padding-left: 0.5rem ;
+  font-size: 40px;
+  /* background-color: aqua; */
+  color: white;
+}
+
+
+.signup-form-sub:nth-child(2) > button {
+    display: block;
+    margin: 0.5rem;
+    width: 400px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: rgb(255, 255, 255);
+    border: 0;
+    outline: 1px solid rgba(152, 152, 152, 0.729);
+    font-size: 20px;
+    font-weight: 600;
+    color : black ;
+}
+.signup-form-sub:nth-child(2) > button > i {
+  font-size: 23px;
+  padding-right: 0.5rem;
+}
+
+.signup-form-sub:nth-child(2) > button:last-child {
+  background-color: rgb(0, 183, 255);
+  color: white;
+}
+
+.space-line {
+  margin-left : 0.5rem ;
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.space-line > hr {
+   width: 43%;
+   border: 0.1px solid rgb(164, 164, 164);
+   outline: 0;
+}
+.space-line > span {
+  width: 10%;
+  color: white;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 500;
+} 
+
+.login-box {
+  width: 100%;
+  height: 100%;
+  /* background-color: blue; */
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+  padding-left: 4rem;
+}
+.login-box > h2 {
+    font-size: 23px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+    padding: 1rem ;
+
+}
+
+.login-box > button {
+  display: block;
+  margin: 0.5rem;
+  width: 400px;
+  height: 50px;
+  border-radius: 25px;
+  background-color: transparent;
+  border: 0;
+  outline: 1px solid rgba(152, 152, 152, 0.729);
+  font-size: 20px;
+  font-weight: 600;
+  color : rgb(0, 139, 253) ;
+}
+
+
+/* overlay */
+
+  .signup-overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(43, 53, 62, 0.629);
+      display: none;
+      justify-content: center;
+      align-items: center;
+  } 
+
+  .reset-overlay {
+    display: flex;
+  }
+
+  .reset-overlay > .signup-box {
+    display: flex !important;
+  }
+
+
+  .signup-overlay > .signup-box {
+    position: absolute;
+    width: 30%;
+    height: 70%;
+    background-color: black;
+    border-radius: 25px;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .signup-box > h1 {
+    width: 80%;
+    height: 10%;
+    font-size: 40px;
+    padding: 1rem;
+    color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+  }
+  .overlay-remove {
+    top: 2rem;
+    right: 2rem;
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 0;
+    background-color: rgb(54, 54, 54);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .overlay-remove > i {
+    font-size: 23px;
+  }
+
+  .signup-box > form {
+    position: relative;
+     height: 70%;
+     width: 80%;
+     padding: 1rem;
+     display: flex;
+     justify-content: flex-start;
+     align-items: flex-start;
+     flex-direction: column;
+     padding-top: 3rem;
+  }
+
+  .signup-box > form > input[type="submit"] ,  .signup-box:nth-child(2) > form > a{
+    cursor: pointer;
+  }
+
+  .signup-box > form > input {
+    width: 100%;
+    height: 4.7rem ;
+    margin-bottom: 1rem; 
+    border-radius: 10px;
+    background-color: transparent;
+    border: 0.1px solid rgba(123, 123, 123, 0.59);
+  }
+
+  .signup-box > form > input::placeholder {
+      font-size: 22px;
+      padding-left: 1rem;
+      color: rgb(140, 140, 140);
+  }
+
+
+  .signup-box > form > input:last-child {
+    position: relative;
+    margin-top: 4rem;
+    border-radius: 40px;
+    background-color: rgb(0, 174, 255);
+    color: white;
+    font-size: 25px;
+    border: 0;
+  }
+
+  .signup-box:nth-child(2) > form > a {
+    color: rgb(0, 200, 255);
+    padding-left: 1rem;
+    text-decoration: none;
+    font-size: 20px;
+    font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  .signup-box:nth-child(2) > form > input:last-child {
+    margin-top: 14.3rem;
+  }
+ 
+  .signup-box:nth-child(3) > form {
+    position: relative;
+  }
+
+  .signup-box > form input[type="submit"] {
+      position: absolute;
+      bottom: 2rem;
+  }

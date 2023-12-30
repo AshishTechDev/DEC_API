@@ -1,0 +1,75 @@
+<%- include('../partials/head.ejs') %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/home.css">
+  <link rel="stylesheet" href="/css/mypost.css">
+  <link rel="stylesheet" href="/css/editprofile.css">
+  <script src="/js/mypost.js" defer></script>
+    </head>
+
+    <body>
+        <section class="home-section">
+          <%- include('../partials/leftaside.ejs') %>
+          <div class="container">
+            <!-- <div class="container-top">
+              My Posts
+            </div> -->
+            <form class="profile-box" action="/updateProfile" method="post" enctype="multipart/form-data">
+              <div class="profile-cover">
+                <input type="file" name="profileBanner" id="profileBanner" hidden onchange="pickedhandler(event)" />
+                <img src="<% if(!banner){ %>http://via.placeholder.com/640x360<% } else { %>http://localhost:4000/<%= profile.profileBanner %><% } %>" alt="">
+                <div class="profile-cover-change">
+                    <div class="circle">
+                      <i class="fa-solid fa-camera"
+                      type="button" onclick="pickImageHandler()"
+                      style="color: #ffffff;"></i>
+                    </div>
+                    <div class="circle">
+                      <i class="fa-solid fa-xmark" style="color: #ffffff;"></i>
+                    </div>
+                </div>
+              </div>
+              <div class="profile-follow-button">
+                  <div class="follow-button">
+                    <button type="submit" >Save Profile</button>
+                  </div>
+              </div>
+              <div class="profile-pic">
+                <input type="file" name="profilePic" id="profilePic" hidden onchange="pickedProfile(event)" />
+                <img src="<% if(!pic){ %>http://via.placeholder.com/640x360<% } else { %>http://localhost:4000/<%= profile.profilePic %><% } %>" alt="">                <div class="profile-photo-change">
+                  <div class="circle">
+                    <i class="fa-solid fa-camera"
+                    type="button" onclick="pickProfileHandler()"
+                     style="color: #ffffff;"></i>
+                  </div>
+              </div>
+              </div>
+              <div class="edit-profile-data">
+               <div class="edit-profile-sub">
+                <label for="name">Name</label>
+                <input type="text" name="name" maxlength="20" value="<%= profile.name %>" >
+               </div>
+               <div class="edit-profile-sub">
+                <label for="desc">Bio</label>
+                <textarea name="description" maxlength="150" ><%= profile.description %></textarea>
+               </div>
+               <div class="edit-profile-sub">
+                <label for="website">Website</label>
+                <input type="text" name="website" maxlength="30" value="<%= profile.website %>" >
+               </div>
+               <div class="edit-profile-sub">
+                <label for="birth">Date of Birth</label>
+                <input type="date" name="birth" value="<%= profile.birth %>" >
+               </div>
+               <input type="hidden" name="id" value="<%= profile._id %>">
+              </div>
+            </form>
+            <div class="container-top">
+            </div>
+          </div>
+          <%- include('../partials/rightaside.ejs') %>
+        </section>
+        <script src="../js/edit-profile.js" defer></script>
+                    <%- include('../partials/end.ejs') %>

@@ -1,0 +1,137 @@
+<%- include('../partials/head.ejs') %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/home.css">
+  <link rel="stylesheet" href="./css/mypost.css">
+  <script src="./js/mypost.js" defer></script>
+    </head>
+
+    <body>
+        <section class="home-section">
+          <%- include('../partials/leftaside.ejs') %>
+          <div class="container">
+            <!-- <div class="container-top">
+              My Posts
+            </div> -->
+            <div class="profile-box">
+              <div class="profile-cover">
+                <img src="<% if(!banner){ %>http://via.placeholder.com/640x360<% } else { %>http://localhost:4000/<%= user.profileBanner %><% } %>" alt="">
+              </div>
+              <div class="profile-follow-button">
+                  <div class="follow-button">
+                    <a href="/editProfile/<%= user._id %>">Edit profile</a>
+                  </div>
+              </div>
+              <div class="profile-pic">
+                <img src="<%= user.profilePic %>" alt="">
+              </div>
+              <div class="profile-data">
+                <div class="profile-data-name">
+                  <span><%= user.name %></span>
+                  <span>@Ashishb19</span>
+                </div>
+                <div class="profile-data-desc">
+                  <p><%= user.description %>
+                    <%= user.website %>
+                  </p>
+                </div>
+                <div class="profile-following">
+                  <a href="">1300 <span> following</span></a>
+                  <a href="">2300 <span>followers</span></a>
+                </div>
+              </div>
+              <div class="profile-option">
+                <div class="profile-options posts">
+                  <a>Posts</a>
+                </div>
+                <div class="profile-options reply">
+                  <a>Reply</a>
+                </div>
+                <div class="profile-options Media">
+                  <a>Media</a>
+                </div>
+                <div class="profile-options Likes">
+                  <a>Likes</a>
+                </div>
+              </div>
+            </div>
+
+            <% if(posts.length > 0) {%>
+              <div class="post-container">
+                <% for(let post of posts) {%>
+                <div class="post-box">
+                  <div class="post-author">
+                    <div class="post-author-img">
+                      <img src="<%= postuserDetails.profilePic %>" alt="">
+                    </div>
+                    <div class="post-author-name">
+                      <span><%= postuserDetails.name %></span>
+                    </div>
+                    <div class="delete-box">
+                      <button class="open-box-btn" 
+                      onclick="getValue('<%= post.PostId._id %>')"
+                      >
+                      <i class="fa-solid fa-ellipsis-vertical" style="color: #ffffff; right:0"></i></button>
+                    </div>
+                  </div>
+                  <div class="post-image">
+                    <img src="http://localhost:4000/<%= post.PostId.imageUrl %>" alt="">
+                  </div>
+                  <div class="post-button">
+                    <i class="fa-solid fa-heart"
+                    style="color: #ff1b3d;"></i>
+                    <i class="fa-regular fa-comment" 
+                    style="color: #ffffff;"></i>
+                    <i class="fa-solid fa-arrow-up-from-bracket"           style="color: #ffffff;"></i>
+                  </div>
+                  <div class="post-title">
+                    <span>
+                      <%= post.PostId.title %>
+                    </span>
+                  </div>
+                </div>
+                <% }%>
+              </div>
+            <% } else {%>
+              <h1>No Posts yet</h1>
+              <% } %>
+            <div class="container-top">
+            </div>
+          </div>
+          <%- include('../partials/rightaside.ejs') %>
+        </section>
+        <div class="overlay">
+          <div class="post-author-box">
+            <div class="post-author-box-cross">
+              <button class="box-cross">
+                <i class="fa-solid fa-xmark"
+                style="color: #ffffff;"
+                ></i>
+              </button>
+            </div>
+            <div class="post-author-Buttons">
+              <a id="Edit-button" href="" >Edit Post</a>
+              <a id="Delete-button" >Delete Post</a>
+            </div>
+        </div>
+        </div>
+        <div class="Edit-overlay">
+          <form class="Edit-post-box">
+            <div class="Edit-Post-img">
+              <img src="https://img.freepik.com/premium-photo/fantastic-view-kirkjufellsfoss-waterfall-near-kirkjufell-mountain-sunset_761071-868.jpg?w=2000" alt="" name="imageUrl">
+            </div>
+            <div class="Edit-Post-Title">
+              <textarea name="title" ></textarea>
+            </div>
+            <div class="post-author-Buttons Edit-Post-Buttons">
+              <a href="/">Update</a>
+              <a id="Cancel-Btn">Cancel</a>
+            </div>
+          </form>
+        </div>
+        </div>
+
+
+                    <%- include('../partials/end.ejs') %>
