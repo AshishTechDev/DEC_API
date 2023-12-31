@@ -19,7 +19,7 @@
             <form class="profile-box" action="/updateProfile" method="post" enctype="multipart/form-data">
               <div class="profile-cover">
                 <input type="file" name="profileBanner" id="profileBanner" hidden onchange="pickedhandler(event)" />
-                <img src="<% if(!banner){ %>http://via.placeholder.com/640x360<% } else { %>http://localhost:4000/<%= profile.profileBanner %><% } %>" alt="">
+                <img src="<% if(!banner){ %>http://via.placeholder.com/640x360<% } else { %>https://auth-api-app.onrender.com/<%= profile.profileBanner %><% } %>" alt="">
                 <div class="profile-cover-change">
                     <div class="circle">
                       <i class="fa-solid fa-camera"
@@ -38,7 +38,7 @@
               </div>
               <div class="profile-pic">
                 <input type="file" name="profilePic" id="profilePic" hidden onchange="pickedProfile(event)" />
-                <img src="<% if(!pic){ %>http://via.placeholder.com/640x360<% } else { %>http://localhost:4000/<%= profile.profilePic %><% } %>" alt="">                <div class="profile-photo-change">
+                <img src="<% if(!pic){ %>http://via.placeholder.com/640x360<% } else { %>https://auth-api-app.onrender.com/<%= profile.profilePic %><% } %>" alt="">                <div class="profile-photo-change">
                   <div class="circle">
                     <i class="fa-solid fa-camera"
                     type="button" onclick="pickProfileHandler()"

@@ -15,7 +15,7 @@
         <div class="Edit-overlay" style="display: block;">
           <form class="Edit-post-box" action="/updatepost" method="post" enctype="multipart/form-data">
             <div class="image-upload__preview Edit-Post-img">
-              <img src="<% if(!postimg){ %>http://via.placeholder.com/1280x720<% } else { %>http://localhost:4000/<%= Singlepost.imageUrl %><% } %>" alt="">
+              <img src="<% if(!postimg){ %>http://via.placeholder.com/1280x720<% } else { %>https://auth-api-app.onrender.com/<%= Singlepost.imageUrl %><% } %>" alt="">
               <div class="edit-post-photo">
                 <i class="fa-regular fa-image" style="color: white;" type="button" onclick="pickImageHandler()"></i>
                 <input
