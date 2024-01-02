@@ -15,3 +15,21 @@ const pickedhandler = (e) => {
     return false ;
   }
 };
+
+const buttonLogo = document.querySelector(".button-logo");
+const HomeOverlay = document.querySelector(".home-overlay");
+
+
+HomeOverlay.addEventListener("click" , () => {
+  console.log("heo");
+  document.querySelector(".left-aside").style.left = "-70vw" ;
+  buttonLogo.style.display = "flex" ;
+  HomeOverlay.style.display = "none" ;
+});
+
+buttonLogo.addEventListener("click" , () => {
+  console.log("fff");
+  document.querySelector(".left-aside").style.left = 0 ;
+  buttonLogo.style.display = "none" ;
+  HomeOverlay.style.display = "block" ;
+})

@@ -11,10 +11,15 @@
         <!-- <%- include('../partials/navbar.ejs') %> -->
         <section class="home-section">
           <%- include('../partials/leftaside.ejs') %>
+          <div class="home-overlay">
+            
+          </div>
           <div class="container">
-            <!-- <div class="container-top">
-              Twitter
-            </div> -->
+            <div class="container-top">
+            </div>
+            <button class="button-logo" >
+              <i class="fa-brands fa-x-twitter" style="color: white;"></i>              
+            </button>
             <div class="container-message">
               <form class="message-container" action="/addpost" method="post" enctype="multipart/form-data">
                 <div class="post-heading">Your Post</div>
@@ -50,12 +55,18 @@
                   <img src="https://auth-api-app.onrender.com/<%= post.imageUrl %>" alt="<%= post.title %>">
                 </div>
                 <div class="post-button">
-                  <i class="fa-solid fa-heart"
-                  style="color: #ff1b3d;"></i>
-                  <i class="fa-regular fa-comment" 
-                  style="color: #ffffff;"></i>
-                  <i class="fa-solid fa-arrow-up-from-bracket"           style="color: #ffffff;"></i>
-                </div>
+                  <!-- <i class="fa-solid fa-heart"
+                  style="color: #ff1b3d !important ;"></i> -->
+                  <div class="sub-button"><i class="fa-regular fa-heart"></i> <span>120</span>
+                  </div>
+                  <div class="sub-button">
+                    <i class="fa-regular fa-comment" 
+                    style="color: #ffffff;"></i> <span>25</span>
+                  </div>
+                  <div class="sub-button">
+                    <i class="fa-solid fa-arrow-up-from-bracket"  style="color: #ffffff;"></i><span>27</span>
+                  </div>
+                            </div>
                 <div class="post-title">
                   <span>
                     <%= post.title %>
