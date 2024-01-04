@@ -298,3 +298,82 @@ section .signup-sub-section:nth-child(2) > .signup-section-form {
       position: absolute;
       bottom: 2rem;
   }
+
+
+
+
+
+
+
+
+
+  @media screen and (max-width: 600px) {
+  
+    .signup-section {
+      width: 100%;
+      height: 100vh !important;
+    }
+
+    .signup-form-sub:nth-child(1) > h1 {
+      font-size: 2rem;
+    }
+
+    .signup-form-sub:nth-child(2) > button {
+      width: 80%;
+    }
+
+    .space-line {
+      width: 80%;
+    }
+
+    .login-box > button {
+      width: 80%;
+      font-size: 16px;
+    }
+
+
+    .signup-sub-section:nth-child(1) {
+  
+          display: none;
+    }
+
+    .signup-sub-section:nth-child(2) {
+      padding: 0 !important;
+      margin: 0 !important;
+        width: 100%;
+  }
+
+  .signup-overlay > .signup-box  {
+    width: 95%;
+    min-height: 70%;
+  }
+
+  .signup-form-sub:nth-child(2) > button {
+    font-size: 16px;
+  }
+
+  
+  .signup-box > h1 {
+    font-size: 1.5rem;
+  }
+
+  .signup-box > form {
+    padding:  2rem 0;
+  }
+
+  .signup-box > form > input {
+    height: 3rem;
+    font-size: 1rem;
+  }
+
+  .signup-box > form > input::placeholder {
+    font-size: 1rem;
+  }
+
+  .signup-box > form input[type="submit"] {
+    font-size: 1.2rem;
+  }
+
+  
+
+}
